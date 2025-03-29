@@ -6,7 +6,7 @@
 
 @section('body')
     @if($msj = Session::get('success'))
-    <div class="row">
+    <div class="row" id="alerta">
         <div class="col-md-4 offset-md-4">
             <div class="alert alert-success">
                 <p><b><i class="fa-solid fa-check"></i> {{$msj}} </b></p>
@@ -48,7 +48,8 @@
                                 <form action="{{ route('games.destroy', ['id' => $row->id]) }}" method="POST" id="frm_{{ $row->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger" onclick="return confirm('¿Está seguro de eliminar el juego {{ $row->name }}?')">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmacion"
+                                    onclick="setinfo({{ $row->id }}, '{{ $row->name }}')">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -60,4 +61,26 @@
             </div>
         </div>
     </div>
+    <div class="modal" tabindex="-1" id="modalConfirmacion">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">¿Seguro que quieres sarle kranky?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><i class="fa-solid fa-warning fs-3 text-warning"></i></p>
+                <label id="lbl_nombre"></label>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"> cacelar </button>
+                <button type="button" id="btnEliminar" class="btn btn-success"> Eliminar </button>
+            </div>
+        </div>
+        </div>
+    </div>
+@endsection
+
+@section('js')
+    @vite('resources/js/index.js')
 @endsection

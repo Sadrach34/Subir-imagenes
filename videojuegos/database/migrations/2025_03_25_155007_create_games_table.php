@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 80);
+            $table->string('name');
             $table->integer('levels');
             $table->date('release');
-            $table->string('image', 80);
+            $table->string('image');
             $table->timestamps();
         });
     }

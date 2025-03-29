@@ -5,7 +5,7 @@
 @endsection
 
 @section('action')
-    action="{{ route('games.update', ['game' => $game->id]) }}"
+    action="{{ route('games.update', $game->id) }}" method="POST"
 @endsection
 
 @section('method')

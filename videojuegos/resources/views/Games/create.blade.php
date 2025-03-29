@@ -3,5 +3,5 @@
     Crear
 @endsection
 @section('action')
-    action="{{ route('games.store') }}"
+    action="{{ route('games.store') }}" method="POST"
 @endsection
